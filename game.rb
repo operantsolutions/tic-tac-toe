@@ -1,15 +1,13 @@
 class Game
-  
-  attr_accessor :self.num_games_started
-  
-  self.num_games_started = 0
+
+  @@num_games_started = 0
   
   def initialize(name="default")
     @name = name
     @board = [
-              [nil, nil, nil],
-              [nil, nil, nil],
-              [nil, nil, nil]
+              ["___", "___", "___"],
+              ["___", "___", "___"],
+              ["___", "___", "___"]
              ]
     @x_player = nil
     @o_player = nil
@@ -22,8 +20,7 @@ class Game
   end
   
   def show_board
-    @board.each { |row| puts row }
+    @board.each { |row| print "#{row}\n" }
   end
   
 end
-  
