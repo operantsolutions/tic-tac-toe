@@ -1,6 +1,5 @@
 require './game.rb'
 require './player.rb'
-require 'pry-byebug'
 
 def place_piece(piece, location, game)
   case location
@@ -31,6 +30,7 @@ def take_turn(player, game)
   game.show_board
   puts "It is #{player.name}'s turn. Where would you like to put your piece?"
   place_piece(player.piece, gets.chomp, game)
+  game.check_for_victory
 end
 
 def play_tic_tac_toe 
@@ -43,13 +43,11 @@ def play_tic_tac_toe
   puts "And who is 'O's? They'll go second."
   o_player = Player.new("o", gets.chomp, false)
   current_game.players.push(o_player)
-  binding.pry
   
   while current_game.game_is_over == false
     current_game.players.each do |player|
       if player.is_turn
         take_turn(player, current_game)
-        current_game.check_for_victory
         player.is_turn = false
         case player.piece
         when "x"
@@ -61,8 +59,6 @@ def play_tic_tac_toe
       end
     end
   end
-  
-  current_game.declare_winner
   
 end
 
