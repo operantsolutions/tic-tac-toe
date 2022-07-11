@@ -1,26 +1,26 @@
 class Game
 
+  attr_accessor :name, :board, :players, :game_is_over
   @@num_games_started = 0
   
   def initialize(name="default")
-    @name = name
-    @board = [
+    self.name = name
+    self.board = [
               ["___", "___", "___"],
               ["___", "___", "___"],
               ["___", "___", "___"]
              ]
-    @x_player = nil
-    @o_player = nil
-    @game_is_over = false
+    self.players = []
+    self.game_is_over = false
     @@num_games_started += 1
   end
   
-  def game_is_over?
-    return @game_is_over
-  end
-  
   def show_board
-    @board.each { |row| print "#{row}\n" }
+    self.board.each { |row| print "#{row}\n" }
+  end
+
+  def check_for_victory
+    
   end
   
 end
